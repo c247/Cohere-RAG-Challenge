@@ -1,0 +1,2055 @@
+[Music]
+hi everyone
+and welcome to your first episode of
+cs350 online
+i'm your host for the entire term of
+course uh leslie i said and
+well today is going to be just a
+brief introduction and then we're going
+to start talking
+about um what is an operating system
+so it's kind of light light topics today
+and then we'll dive
+deep into some stuff starting uh on
+thursday so just so you're aware
+our episodes are going to be slightly
+shifted time
+uh 11 15 is going to be our new start
+time and that's just because as
+i mentioned on piazza uh my daughter is
+in virtual school and trying to
+deal with you know the scheduling and
+all of that can be a little complicated
+um what you can't see because i have
+this
+green screen behind me
+um is the fact that my kitchen and my
+daughter's desk is actually right
+beside and behind me and so i've got to
+actually move
+her entire workstation downstairs
+so she can to continue doing school uh
+while we're doing this episode so from
+time to time she's now in the basement
+um you might hear her or you might hear
+my dishwasher i apologize
+um if you're wondering why don't i move
+down to the basement
+uh the reason is actually because i have
+quite a
+setup i know you can't see it and i
+don't want to turn the camera but
+i have an extra monitor and that's
+huge and um it's one of these 38 inch
+ultra wides here and then i've got
+another
+laptop and a bunch of other hardware and
+the green screen itself is
+a bit of a pain so um i have to do it in
+kind of my own little
+studio here uh all right
+so that's our new lecture times are
+going to be 11 15. and if you can't
+attend live that's totally fine we will
+be
+um posting all of these episodes to
+you the youtube channel right afterwards
+now sometimes it can take
+an hour or two before youtube will give
+you the 4k version so we are streaming
+in 4k just so you know
+um but youtube takes a little extra time
+to process the 4k
+so the standard definition is usually up
+there almost immediately and then
+the hd version comes and then the 4k
+version usually comes a little bit later
+and for those of you that are not able
+to
+access youtube or twitch um
+we will also be uploading all of these
+videos to learn
+but they will have to be in a lower
+resolution learn has a lot of
+restrictions on how big your file size
+can be and let's just say these files
+are way bigger than what learn whatever
+allow um and so what i have to do
+is i have to down sample them and then
+upload them to learn
+so it may there may be a 24 hour delay
+before we can actually get the the
+videos up to learn
+but that should be okay because we've
+set all of the deadlines
+um such that you're not going to learn a
+topic one day
+and then it's two the next day that's
+just horrible
+um all right so who am i so some of you
+may have seen me around before
+around because we haven't actually been
+on campus in person in
+over a year now something like that um
+so i'm a lecturer at waterloo and um
+i'm also one of those uw for life people
+that means that i did my undergrad my
+master's and my phd
+all um all at waterloo
+and now i work here and you know there's
+actually a few of us that have done this
+if you go around you'll actually find
+quite a few of the other lecturers are
+in the same boat
+now just to address a quick question on
+twitch will they be uploaded to twitch
+as well after the lecture
+so i'm cheap and i don't want to pay for
+the twitch account
+so they will be on twitch for two weeks
+because that's what a free twitch
+account will get you
+um but they will be on youtube
+permanently
+um and for those of you who want to see
+previous terms i have
+every previous term including one that
+was live stream in person
+they are all also posted to the youtube
+channel so you've got lots of
+everything's on the youtube channel uh
+where stuff only stays on twitch for two
+weeks and even if i did pay my problem
+is
+so even if i did pay for a twitch
+account
+it would only stay for 60 days and
+that's
+not enough time in my opinion because a
+course is more than two months
+so youtube is permanent storage so yeah
+i'm a lecturer
+and um my research area actually isn't
+operating systems so
+my expertise is in computer graphics
+specifically
+what can we do to improve film
+production pipelines so i work with
+stereo 3d
+and i work with things like
+pre-visualization
+and post-production algorithms and
+what's
+really fun about the research that i do
+is a lot of the time it means i actually
+get to go out in the field
+and and work with the industry directly
+which is a lot of fun so it's things
+like
+going on film sets or going to do tests
+of motion capture stuff
+for for various different projects it's
+a lot of fun
+so then why is a graphics person
+teaching os well you know
+odd tradition at waterloo is a lot of
+os courses have been taught by graphics
+people
+and that may seem like a really odd
+thing but actually a lot of people in
+graphics have a fair bit of experience
+with systems as well
+because we're always trying to make
+whatever we're doing
+run as fast as possible and if you
+want your tool whether it's like a
+real-time stereo conversion tool to run
+in real time
+or you're trying to make a game have the
+highest possible frame rate
+it's really important to actually have a
+pretty deep understanding of how systems
+work
+because if you don't you can make a lot
+of mistakes in your code that are going
+to cost you a lot of time
+and you're going to see as we go over
+this term
+some of the mistakes that you can make
+in code that you may have not even
+thought of
+that actually are costing you a lot of
+time
+and there's quite a few of them we'll
+talk about over the course of the term
+now it's interesting actually about
+myself is that before i actually started
+a background i
+started working in graphics i actually
+had a low-level
+systems background so my previous
+life i suppose i was a compiler
+developer
+and a driver developer for for the linux
+kernel actually
+so i do actually have a fair bit of
+systems experience as well
+and when we get to talking about device
+drivers you will notice because i get
+all super excited because i'm talking
+about stuff that i worked on for many
+years
+um all right now i know we are all doing
+this remotely from
+different parts of the world i'm hoping
+this time slot works
+okay i know it's probably not great for
+everybody
+again it is really hard to schedule
+things when everybody's working from
+home and you've got
+your kids also working from home that
+can be quite tricky but wherever you are
+i hope that you're staying safe and
+and healthy and hopefully this will all
+come to an end really soon
+i know the region of waterloo actually
+just made an announcement that you can
+all get registered anyone 12 and up can
+get registered now for a vaccine
+um i'm going to assume that most of you
+are older than 12.
+stranger things have happened um
+so anyways hopefully things will change
+and hopefully the fall and winter terms
+will be a little
+bit different than than this term here
+all right so everything that we are
+doing this term is going to happen
+online so we are having no in-person
+content
+um we are going to all the episodes will
+be
+streamed online and all our office hours
+will be online and the office hours will
+be posted eventually um
+sometime later this week and even
+your assessments are also going to be
+online as well so
+everything is going to be online you
+don't have to crowd into the pack and
+deal with that stench of fear as all the
+students are trying to write
+panicked exams i was there i remember
+so just a couple things i wanted to
+mention
+um one of them is the course website
+so the cs servers have actually been
+down for the last week and so we've
+we tried to make the updates well in
+advance
+of the course actually starting but
+unfortunately they only came back
+up like i think it was yesterday night
+or the the night before so i've started
+making changes if you go to the
+s21 it's gonna switch over here
+for one quick second that way i can
+actually share my screen with you
+um so i
+you can see here even though at the top
+the url says s21 it still says winter
+2021 and
+this is not fully updated yet um
+the one thing that has been updated is
+the uh
+the grading scheme has been updated and
+if you click on assignment information
+it lists
+some of the new assignments but
+some things like the assignment
+descriptions may not be posted yet
+our goal is to have this website fully
+functional by the end of this week
+um and uh so so that you can actually
+get started on these things
+we so there's i'll talk about the
+assignments in a few minutes
+but um our policies to have
+all the assignments the coding
+assignments open for the entire term so
+you don't have to wait for them to be
+released
+that way if you finish one you can move
+on to the next one
+um and you don't need to wait for some
+magical release date
+that's not gonna happen so yeah please
+be patient with us we will get this
+website
+uh up and running as soon as possible
+but it does take a little bit of time to
+do that
+uh okay let's go back
+the other thing i want to say is that
+for most of the term we'll actually be
+using piazza
+and um that's for all communications
+and yes i know i see on twitch someone
+sings the winner 21 star
+site is still live i'm aware we are
+aware we are in the process of getting
+this fixed again we have not had a lot
+of time because the servers really only
+just came up
+and our isc who would be responsible for
+doing this
+is um obviously working on
+um other courses as well so at the end
+of this week
+everything on the website should be fine
+um but don't worry about
+are you missing anything you won't be
+missing anything this week you're fine
+um so the other thing i want to say is
+piazza is where we're going to do
+pretty much everything uh
+like in terms of communication uh where
+we're going to post
+any kind of extra content
+so i'll just show you that here it's the
+wrong one
+so piazza here so one of the things i
+want to point out to you
+is in the pins section this is where the
+most important stuff is going to be and
+you know this because you've used piazza
+like a billion times before
+but in particular there's this extra
+sample problems
+and lecture content and this is probably
+the most important pinned post that
+there will be
+so for each of kind of the topics we
+have these extra guides
+and they are all posted here and they're
+all posted from day one
+because again you have in this course
+even when it's in person you have the
+ability to work at your own pace
+um 350 has kind of this open policy in
+the sense that we like everything to be
+available always to you
+so if you want to work at your own pace
+and some like work way ahead finish
+all the content in the first two weeks
+you can do that that's totally fine by
+us
+um so that's why we have all of the
+guides already posted
+um now for some of you um just to put it
+out there we'll talk about this again in
+a minute
+this is a c not c plus
+c programming heavy course the
+main assignments which are worth
+something like 40 or 45
+of your total mark are all done in c
+that's c not c plus plus
+you don't get to use c shell because who
+would want to do that that's not even a
+real thing
+um you're gonna be using gcc and you're
+gonna have to use gdb
+and um so i know many of you haven't
+done a lot of c programming
+out on co-op terms because that's just
+not the way the world works
+these days everything tends to be
+web-based um
+so we have some c tutorials on the
+course website to refresh your memory
+and if you have a hard time with
+pointers and memory there's also this
+very silly thing i wrote a few years ago
+called pointers of bedtime story
+why is it called this so i was i think
+my daughter was maybe three or four at
+the time
+and he was like how would i explain
+pointers to her so i tried to make like
+a children's
+book to explain it uh yeah anyways
+it might be silly but it might be
+helpful too so this is where all the
+extra content
+is we have also assignment guides as
+well
+uh so there's the assignment guides
+you'll know there's no
+assignment guide for a0 because a0 is
+essentially put your name on it and
+yeah you don't need a guide for that um
+and
+a1 uh is a new assignment as of last
+term
+we don't have a guide for it but we will
+be posting
+some helpful links now question on
+twitch is
+is there any restriction to the
+libraries you are allowed to use for c
+yes yes there is
+um so
+the operating system where most of the
+co the coding assignments except for a1
+are going to be using
+is going to be compiled to a simulated
+mips architecture
+so you can only use the libraries that
+are included with the operating system
+code you cannot
+bring in extra things we are also using
+a really
+old c standard i i'm not
+i don't actually think it's c99 it's
+either c89 or c99
+um because the operating system is a
+little bit older and code based
+so you've you won't be able to bring in
+any new libraries they just
+won't work because they won't be
+compiled for that architecture um
+don't even try but you don't need
+anything i'm going to tell you that
+right now
+you don't need anything the only tool
+you're going to wish you had this term
+and you don't have access to is valgrind
+and um yeah valgrind doesn't work
+excuse me
+yeah this works so you're going to have
+to solve memory problems on your own
+does that mean we're running valgrind to
+check for memory leaks in your code no
+of course not you're in third year i'm
+not even going to check your style
+yeah no style marks that being said
+if you want a ta or myself to help you
+please don't write the most obfuscated c
+code i've ever seen because i won't help
+you
+write clear code for yourself but also
+so we can help you
+um but yeah we're not running val grind
+we're not checking your style it's it's
+nothing like that
+um so yeah we've got assignment guides
+here on piazza
+um some pseudo code we also
+do some sample problems in the episodes
+and all of the handouts
+that we'll take up in the episodes are
+actually in the zip file
+these are all previous midterm problems
+and then
+because i know the slides haven't
+actually been updated on the course
+website i've actually put a zipped
+folder of all the updated slides right
+here so you can download them right now
+um the other thing i wanted to mention
+about the course website just
+while we're talking about it is we are
+not having a midterm
+but you might want to study and get more
+experience
+and if you actually look on the course
+website
+oh goodness
+of course i have no idea somebody
+redesigned it now i don't know where
+anything is
+let's just go to the default
+and it's not there either ah that's so
+annoying
+let's go back in time really far so all
+of our course websites are still around
+and if you go to the winter 20 website
+and i'll make sure this gets posted
+you'll see exam information
+and you'll see study aids sample exams
+with solutions and review questions
+sample exams with solutions
+as you can see here is our list of
+previous midterms with their solutions
+we after each midterm when we actually
+had in-person midterms
+we post the midterm and it's solutions
+publicly and that means that you have
+a literal ton of sample material to
+study from
+and then for a whole course coverage
+review questions we have under review
+questions
+we have um a set compiled by a bunch of
+students
+and they're only the questions and then
+you'll see c is 354. now see
+this course has not been called 354
+since i was an undergrad
+but there is some questions from that
+course
+now a lot of them are way beyond what we
+teach currently
+so someone in about six seven years ago
+updated the list of what's relevant that
+probably needs to be updated
+again but you get the point there's a
+lot of study materials for this course
+all right
+so what i want to do then
+let's open up this slide it actually
+goes
+through some of the uh material here
+so hopefully some of you are actually
+excited about this course
+um i know from reading on piazza and
+just talking to students in general
+there's
+a lot of students who are kind of scared
+or intimidated by this course
+and i think one of the big reasons why
+people tend to be intimidated by this
+course is because it is a c
+programming heavy course and because
+it's
+for many students the first time they've
+ever done things with threads
+and
+i i get that times have changed i mean
+when i was an undergrad
+this course everybody was excited about
+nobody was intimidated by it
+but then again the co-op job scene was
+completely different web programming
+jobs were almost non-existent
+and almost everybody was doing their
+work terms in either c c
+plus or java it was pretty rare for
+someone to be doing
+like an html css ajax or anything like
+that
+uh for a co-op term so i want to say
+that we went into this course
+with a lot more experience with these
+low-level languages and i mean when i in
+my first year cs cs135 didn't exist
+cs136 didn't exist
+we had cs 130 which i didn't take that's
+a long story
+um and then cs134 and they were done
+in java and then you went from 134
+to 241 and 246
+being done in ncc plus boston java so
+i feel like we were a bit better
+prepared for the
+programming that was offered in this
+course than um
+than maybe students today but that's
+nothing to fear because once you know
+one language it's so easy to pick up
+another one
+um and the other thing too is remember
+that we are here to help you and anytime
+you actually need help with the language
+i mean there's always stack overflow
+which is super helpful for
+various c syntax issues but
+we also we generally speaking if you
+have an error in the operating system
+we can look at the error message and
+almost always identify
+what's going wrong in your code and help
+you so don't be afraid to ask us for
+help we'll see
+and again don't forget there is a c
+tutorial out there for you to
+to look at um the other thing i think
+that makes people not so interested in
+this course
+is nobody really cares about operating
+systems anymore
+when i was in undergrad when i was a kid
+it was a huge deal
+and the reason why it was such a huge
+deal to take an os course is because
+all of the os's at the time were just
+horrible
+like there was something majorly wrong
+with with all of them
+and i mean when i was in high school
+like we were using os2 warp
+which probably haven't heard of
+and we'll talk about it another day um
+we
+had just so i think when i started high
+school we
+still had windows 3.1 and then we got
+windows 95
+for the labs that could support it and
+then just at the end of high school
+we had windows 98 and the odd machine
+getting windows 2000
+yeah so there were major problems with a
+lot of those operating systems
+and we will talk about some of the
+problems with those operating systems
+but apple wasn't a big thing in the 90s
+that was kind of the time where they
+were almost dying
+they didn't really do the big comeback
+until the 2000s
+they were popular in the 80s but the 90s
+not so much
+um and then if you look
+so you've got os2 warp which is really
+really hard to use
+you've got the windows the earlier 90s
+windows operating systems which had
+so many flaws in them i mean from
+security flaws
+to um you couldn't actually run that
+many programs at the same time and we'll
+talk about that again
+another day but then you've also got
+things like
+new linux in its early days and it was
+not that easy to use and i was using it
+in high school but i wasn't using it
+from a desktop environment i was using
+it
+purely from a terminal and it's it's
+just if you wanted to watch a video
+that's
+it's not easy so i feel like in high
+school every
+software developer a person who is
+interested in that there are three big
+things we all wanted to do we wanted to
+make our own ray tracers
+we wanted to write our own language in a
+compiler for it and we wanted to make
+our own os
+that actually worked and i remember even
+in undergrad
+like there were os released parties like
+when windows came out with a new version
+of itself
+oh here's a party a big party for this
+os new version of the linux kernel
+let's have a party people don't do that
+anymore
+it's because for the most part they work
+and i say for the most part because
+they're not perfect still for example
+i'm using mac os
+here and about two weeks ago i made the
+mistake
+of upgrading to big sur yeah that was a
+huge mistake
+um because it took out pretty much every
+piece of software i use
+on a daily basis which is kind of
+annoying we'll talk about why that
+happened in a few minutes
+so i get it if you're not excited about
+os is because you haven't really thought
+about it
+but i really want to emphasize the fact
+that uh
+having an understanding of how your
+operating system works under the hood
+is actually really important because if
+you want to do any kind of development
+that's like high performance you need to
+understand the consequences
+of something like malloc you might think
+malloc has no consequences
+it absolutely does and if you don't
+understand how an operating system works
+then it's difficult to understand what
+those consequences are
+so i do think this course is still quite
+important especially for people looking
+at
+high performance computing so
+i can make sure i'm scrolling in the
+right direction we've already talked
+about the website in piazza
+course notes are required those are the
+slides they are posted
+on piazza right now and the updated
+versions will be posted
+online as well um hopefully by the end
+of the week
+there is no required textbook but if you
+would like to do some extra reading and
+it's totally up to you
+um we have a free online textbook
+because we don't want you to pay extra
+money believe me see these textbook
+companies i keep they keep sending me
+textbooks like oh
+look at this beautiful book here you
+could use this for your course
+and i like but it costs 300 and the one
+we have right now is free
+i'm gonna stick to the free one so the
+readings that we suggest and again are
+not required
+we've actually extracted those sections
+from this free textbook and they are
+posted
+it's up to you whether you want to read
+them or not i think it's actually pretty
+good reading
+but again how much time do you have you
+probably have four other courses and
+i don't know it's up to you
+so this is where there's a big change
+from previous terms
+so we have four major assignments and
+these are all
+coding assignments um a0 a1 a2
+and a3 and together those assignments
+are worth 40
+i think it's 40 of your final grade
+and we also have quizzes so for each
+module
+so each set of slides there is a quiz
+and i think it's 9 or 10 in total i
+don't remember the count
+and um so that's zero and they are worth
+ten percent in total
+now in previous terms these were
+actually worth twenty five percent in
+total
+but i've decided to reduce the
+percentage because what i really wanted
+to do this term
+was introduce a new assignment
+something that for those of you who are
+not maybe the strongest programmers
+that you might excel in and something
+that if you're interested
+in systems research this might really
+interest you
+so we have these two new assignments
+called reading assignments
+and the reading assignments in total are
+worth fifteen percent of your final mark
+seven and a half percent each and what
+they are and they will be posted at a
+later date to piazza is
+we're going to ask you to read a paper
+and the papers
+are very approachable they're quite old
+actually but
+they're enjoyable um and then we're
+going to ask you to after you've read
+the paper answer some
+questions on learn so it's an
+automatically graded thing
+not too bad so i think that'll be a
+really good experience for for many of
+you
+now question on twitch is what's the
+difference between two up and one up in
+the notes
+um two up means two slides per page one
+up means one
+so if you're printing that's that's what
+it's for
+i don't even know why we do that anymore
+we also have for this course a final
+assessment that is on
+learn as well and that's worth 35
+percent and
+we expect that you pass both the quizzes
+and
+the final assessment to pass the course
+all right
+now the four coding assignments these
+are to be done
+completely individually you are
+unfortunately not writing your own os
+you are
+going to be um making
+[Music]
+additions and fixing features of an
+existing operating system
+the operating system you are going to be
+changing is called os 161
+and it's about 22 000 lines of code in
+the kernel
+it is a fairly big chunk of code if
+you've never worked with a big chunk of
+code before but it's very manageable i
+want to say
+i've certainly written programs that are
+far more code than this
+so it's very it's very approachable and
+the code is reasonably well documented
+and reasonably tidy so i feel like
+it's very approachable and our operating
+system runs on a simulator for mips
+and that's sys161 so that's our virtual
+machine
+uh so another question on twitch is how
+many reading assignments are there
+there are two and together they are
+worth 15 so 7 and a half
+each now we understand that life happens
+so for your coding assignments we have
+this thing called slip days and these
+can only be used for the regular coding
+assignments
+and that is their slip days are the
+ability for you to hand things in
+after the deadline so you get five total
+slip days for the whole term
+and you can use up to three on any one
+assignments
+but if you use three on one assignment
+then you only have two left and there's
+nothing special you have to do
+you just submit after the deadline
+that's it all done
+um speaking of which i should probably
+tell our new i see that
+we don't have anything set up yet so
+because again the servers have been down
+my apologies
+all right so you can use it to three
+slip days for any assignment and that's
+you know
+if you get sick or if if you're
+you've got eight assignments due that
+day these slip days can really help out
+if you are sick though and you're having
+a hard time please just email me
+because we're if you're sick
+we're not going to be like oh no you
+have to use your slip days we'll be like
+okay you're sick so
+what can we do to accommodate you for
+being sick so honestly just
+send us an email now there are two
+reading assignments as i said before it
+there to be done
+individually you read a paper and then
+you answer some questions
+the questions are things like multiple
+choice maybe a calculation um
+maybe a select all that apply um you
+cannot use slip days for these
+assignments
+they're not too difficult so the two
+papers that we're going to ask you to
+read one is the lottery scheduling paper
+which i think is a really really fun
+paper because i think it's a really cool
+scheduling algorithm
+and the other one is the log structured
+file system paper
+and that's really relevant because we
+don't really talk about that
+file system in the course well we don't
+talk about either of those things in the
+course
+but i wanted to give you some exposure
+to
+some some research content and again it
+is from
+it's it's fairly old but it's it's still
+pretty cool
+and um stuff like the log structure file
+system has been the basis for many
+modern file systems like i believe s3 is
+actually based on log structure file
+systems that's pretty cool
+so those are the two papers and we'll
+post those for you uh closer to the
+dates
+um yeah you know don't cheat on the
+assignments you know this because you're
+third year students
+and you've you've dealt with it before
+um we want to make it pretty clear we
+are fully aware that you can google for
+all the solutions to the assignments on
+the internet
+and we know that you can find them and
+we know that you can find over a hundred
+different solutions we have many of
+those solutions in our database
+and when we run the anti-cheating
+software we are comparing your code to
+that
+um and it's not like a character by
+character comparison it also looks at
+things like structure
+now we know a lot of times there isn't
+many much variation that's going to
+happen
+in certain for certain tasks but
+there is a point at which it's you know
+expected
+similarities and wow that's a direct
+copy so we are looking
+for things like that please don't search
+out the
+online solutions
+even if you read them to understand the
+problem and then go and implement it
+yourself
+the chances are that your code ends up
+looking like their code's actually
+pretty high
+and our software does detect that and we
+would be considered cheating if you need
+help ask
+us on piazza that's what we're there for
+um
+the consequences of cheating are zero on
+the assignment and
+minus five percent off your final grade
+this is a really big deal for this
+course and i want to really emphasize
+that right now
+because the assignments are worth a lot
+like you're looking at each assignment
+is worth something like 10 to 15
+the coding assignments
+and the assignments actually build on
+each other
+with the exception of a1 a1 is an
+isolated uh
+just getting used to experience
+assignment a2
+builds off a0 a3 builds off a2
+so if you cheat on a2 you have to
+completely redo it to get full marks on
+a3
+so it's just and you can't resubmit
+a3 based on your cheating a2 because
+you'll get
+the penalty again for a3 so it's one of
+those things where it's just not worth
+it in this course
+if you need help ask us we are here to
+help you
+okay that being said
+um if you want to talk on paths about
+general ideas or talk with your friends
+about general ideas
+if you want to talk about oh i have this
+bug you can post a bug publicly
+to piazza because chances are there's at
+least 20 other people in the room that
+probably have the exact same bug
+and you can discuss oh this is how i
+fixed it or this is how i fixed it
+that's okay
+that's totally fine um as long as you're
+not showing your code
+so that's totally fine we just don't
+want you over sharing
+um the other thing i want to say is
+for the assignments and this is
+absolutely critical
+if you have never used source control
+before please use it
+please and i don't care which one you
+use i think most people these days use
+git
+i'm not a get person myself it helps if
+i don't kick the camera cable
+i am not a get person i do not use get i
+i hate it
+i still use things like subversion and
+mercurial
+perforce um i don't care what you use
+use git use cvs um
+if you really want buy a brand new
+laptop every time
+you write a line of code the reason why
+i really want to emphasize the need for
+using source control here is
+the assignments have multiple parts and
+maybe you get through ninety percent of
+the assignment and you've got it working
+perfectly
+you've got four hours before the
+deadline you're like i'm gonna do that
+last ten percent
+you implement the last ten percent and
+something in that last ten percent
+breaks all of the previous work that you
+did you're going to wish you could go
+back in time and get rid of that stuff
+because it's much better to get 90 on
+the assignment
+than 20 or less right
+so please please use source control um
+it's really really critical for this
+course and again we don't care what you
+do
+there's a guide for get on the course
+website don't make it public
+because believe me other students are
+going to find it and they're going to
+copy it it happens every term
+um make sure it's a private repo
+the other thing i want to say is that uh
+i don't remember which
+get thing it is but one of them once
+they figure you're not a student they
+take all your repos and make them public
+so make sure you either take down before
+that point or
+put it in a repo that will always be
+private i think the university has their
+own
+git repo which that's probably the best
+one for you to use
+so for those of you who have taken the
+course before and that does happen from
+time to time
+um unlike all the other previous courses
+you've done we do
+permit the reuse of previous assignments
+because the chances are you're not going
+to have a brand new idea to solve it
+just please if you wish to pre-use your
+previous work
+please send an email to the instructor
+which i guess in this case it's just me
+um to let us know that you're going to
+reuse some
+or all of your work and that way we can
+make an exception for you
+in the uh cheating software because
+otherwise you get caught cheating
+against yourself and in this course we
+don't care
+you're allowed to copy from yourself
+all right so
+that's kind of all the administrative
+stuff again the course website will be
+updated this week
+i apologize that it hasn't been updated
+so far again it's just an issue if the
+server's been down and it's just come
+back up
+uh if you have more administrative
+questions by all means send me an email
+or post on piazza now for those of you
+who send me an email you'll note i
+actually respond for my personal email
+address
+um that's fine
+in fact i prefer it to be used uh
+that's a long story i have a bit of a
+issue with my uh my you waterloo email
+but so i do tend to use my personal
+email
+but by all means feel free to email me
+or ask me on piazza if you have any
+administrative questions
+um we do have a couple of ias who are
+going to be helping out with office
+hours and they're also going to be
+managing the grading of your assignments
+so if you do have remark requests you
+don't email me remark request you email
+the um either ryan or emilios your
+remark request
+and they will handle assignment remarks
+and we'll make sure that their emails
+are available to you
+this week as well so now i want to
+switch topics and
+start talking more about
+operating systems and and what they do
+and and things like that
+so there's lots of different things
+that we do that we kind of take for
+granted about what's happening
+underneath
+so things like double clicking on a
+program icon like let's say you wanted
+to open a program
+like i'm not actually going to open this
+here because it'll make my computer
+overheat even
+more um let's suppose i wanted to open
+davinci resolve here this is a
+a video editing tool um what happens
+when i click on this icon
+what about if i wanted to say i open
+let's suppose i open resolve
+and i want to save my movie what happens
+when i actually try to save that file
+what happens when you push keys on the
+keyboard or use malloc or printf
+or try to print a file what actually
+happens when you try to do those things
+and what's interesting is that your
+operating system is actually involved
+with every single one
+of these things right here and over the
+course of this term
+you're going to learn how the operating
+system is involved
+in each of these things and we're even
+going to learn to implement
+some of the back end in the os to do
+that
+but before we do that what is an
+operating system
+now if we're thinking about operating
+systems here i'm just going to
+escape out of this most of us when we
+think about an
+os
+we're thinking about
+this environment here yes i know my
+desktop is a mess
+um we've got this this bar at the bottom
+to insta to launch programs and we've
+got a desktop environment where you know
+i could
+open stereo photo maker which i can't
+actually because big sur
+but this is usually what we think of and
+whether you are using something like mac
+os
+or if you're using new linux you might
+be not thinking of the desktop
+environment but you when you think of
+the os
+you might be thinking of the terminal i
+like the fact that we can type
+top here oops sorry the
+i need another keyboard again
+so we can open up top and it tells us
+all kinds of information
+like for example it's telling me that
+obs which is my streaming software
+is using almost 300 on my cpu
+it's a six core processor okay that's
+why it can do that
+so when we think about a linux based
+operating system we might be thinking
+about the terminal and when we're
+thinking about windows
+we tend to think of you know the start
+menu and again
+you know the similar point and click
+atmosphere when we think about our cell
+phones we're thinking about you know
+just
+the icons that you can tap on the point
+i'm trying to make is when you're
+thinking about an operating system
+you don't need that i always click on
+the wrong thing
+when we're thinking about an operating
+system
+we're not thinking about its
+implementation
+we think about it in terms of
+interacting with it
+we are thinking about how do we look
+how do we start a program how do i find
+a file how do i do that
+we don't think about what the operating
+system is actually doing for us and in
+this course we're not interested in
+how do we interact with the os we're
+interested in how does the os
+actually do tasks for us and what are
+the different things that an os
+actually does if you try to find
+definition for what an operating system
+is
+i want to say over time it's changed
+because the very first operating systems
+were incredibly simple the very first
+operating systems
+were nothing more than an io library
+now what is that input output library
+once upon a time software developers
+when
+they wanted to write a program that
+wrote to file
+they actually had to write and implement
+their own version of open and close
+and read and write and they actually had
+to
+tell in those things exactly how the
+bits needed to lay down on the disk
+and how to retrieve it they had to write
+all of that themselves
+and you can imagine the nightmare
+situations that were created because of
+that
+can you imagine each person that you
+know let's suppose two developers
+one is here in waterloo and one's in
+california
+and they both need to read and write the
+same set of files
+if there's no common library
+for which we can use to read and write
+those files and each developer is
+responsible for reading and writing the
+files completely on their own
+what are the chances that the two of
+them actually end up writing compatible
+software
+almost none and so the very first
+operating systems were i o libraries
+that provided
+developers these utilities for reading
+and writing and interacting with devices
+so that they didn't have to write it
+themselves number one which is good
+because that's
+everybody rewriting the same piece of
+code is silly but number two so that
+there was some consistency
+you knew that this worked and it would
+work with every other program
+and then from there things got into
+things like batch processing like let's
+give the os a
+list of files or programs to execute and
+when it's done one
+it executes the next one and the next
+one and the next one so
+our definition of os has really changed
+over the years
+but today we think of an operating
+system as something that manages
+resources
+creates the execution environment for
+the program to actually run
+in loads the programs and provides you
+with a bunch of common
+services and utilities
+now originally some of the first
+commercial operating systems go back to
+actually 1951
+very very long time ago um
+but over the years not everybody has
+learned
+from these lessons so i give you this
+example of no libraries being given no
+drivers being given
+and actually one of the big offenders
+from
+most recent times was actually the atari
+system
+so with the original atari game system
+they didn't release anything
+so each game developer had to write
+their own joystick driver
+their own graphics driver
+everything from scratch which meant that
+some games worked really really well and
+others didn't
+so games like et which had both a
+collision detection problem
+and a joystick try for implementation
+problem
+epically failed because this information
+wasn't provided by atari
+but also you know you've got other games
+where companies are like okay
+if we want to produce games for the
+system we need to make a library so all
+our game developers can use it
+and nowadays we have game development
+kits which are provided by
+you know nintendo and sony and microsoft
+so that game developers don't need to
+worry about how do i interface with the
+joystick
+they can just take advantage of the
+existing library and focus on the game
+development itself so this is a really
+important thing
+so in this course we kind of have three
+views of an operating system
+we've got the application view which is
+what services
+is this operating system providing the
+system view is what problems are we
+solving
+and the implementation view which is how
+do we do it
+and
+let's take a closer look at what these
+actually mean
+so the application view is what
+kinds of resources is the operating
+system providing
+to the programs and to the user
+so what does that mean well your
+operating system needs to create this
+thing called an execution environment
+the execution environment is a
+combination of things it's the memory
+for which the program to load its
+address space
+it's an array of threads and we'll talk
+about the thread array at a later date
+it's um access to networks storage
+io and devices so the execution
+environment is what is the operating
+system
+providing to the user program so that it
+can run
+and it can interface with the different
+devices
+and other things that we see in the
+application view
+is how is the operating system going to
+isolate
+one application from another
+this is really important
+because if i'm playing red alert 2 which
+is one of my favorite favorite games
+i don't want my buying 30 ifv
+tanks in the game
+to actually be able to if i happen to
+have my bank account open in a web
+browser
+i don't want red alert 2 to use real
+money i need
+my programs to be isolated from each
+other and i need there's many reasons
+for this number one
+we don't want one program to be able to
+affect another program negatively
+be that from stealing information to
+causing another program to crash
+if read alert crashes that shouldn't
+crash chrome that makes no sense
+but it's also we provide this isolation
+for security reasons
+obviously i don't want one chrome tab to
+be able to steal information from the
+other
+all right now
+one of the before we talk about the
+system view
+one of the other things that i want to
+talk about with respect to the
+application view
+is actually
+the fact that we want to abstract things
+think of it this way the application
+view is prograding this execution
+environment
+um for the program to run it but really
+what we're doing
+is the operating system is abstracting
+all of the hardware and implementation
+details
+from the user program when you write a
+program
+to read and write a file you don't need
+to know what file system
+you're interacting with you might be
+interacting with ntfs or maybe apfs
+or maybe ext2 or maybe riser fs
+it doesn't matter you as the software
+developer
+don't need to know you just want to read
+and write files
+and so what you end up the the
+application view
+part of that is abstracting all the
+underlying systems
+from the user program so they don't need
+to know the details
+and this has some serious advantages
+we'll talk about in a couple minutes
+so the system view the operating system
+is what kinds of problems do we need to
+solve in the operating system itself
+so for example our our computer actually
+has a finite amount of resources
+the computer i'm using right now today
+is
+a core i9 so it has uh
+six cores each of them capable of doing
+uh
+two two threads per core that is a fixed
+amount of cpu resources i can only run
+12 threads in parallel i have 32 gigs of
+ram
+that is a fixed amount of ram and
+believe me i
+almost always use it all
+i have one keyboard i have
+okay technically two mice because
+there's the track pad and i actually
+have a physical mouse here
+because i hate track pads um
+i have a microphone i have a camera
+i have a fixed amount of resources
+and i have lots of different programs
+running you know what i know how many
+programs i have running right now
+well that's what top's for so if i open
+up top top is telling me i have 501
+processes
+running it's 501 separate programs
+now admittedly a lot of them are asleep
+but there's three or four of them
+they're actively running
+and those programs all need to be able
+to
+share these fixed resources that i have
+they have to be able to share the cpu
+share the physical memory and the system
+view
+of the operating system is how do we
+fairly allocate
+the resources we do have between the
+programs that are running in the
+operating system because it needs
+resources too
+and how do we share it so how do we make
+sure that
+a program that got this allocation now
+is going to actually be able to share
+those resources with another program at
+a later time
+and then we have the implementation view
+of the operating system which is
+how do we actually implement these
+abilities
+so we say that an os is a concurrent
+real-time program
+now i want to differentiate there's
+something called a real-time os
+and just an os and a real time os is
+different from an os and we'll talk
+about that in a minute
+a real-time program though is a program
+that we expect a response to events
+within a specific timing constraint
+so even operating systems that you're
+using right now we are
+expecting that when you click a button
+on your mouse
+that it responds in a certain amount of
+time
+i forgot to get myself a drink that's
+why you'd see me coughing here
+now how are we going to implement that
+how are we going to make it so that
+these timing constraints are obeyed
+another thing is if you've got all of
+these different programs running and
+these
+fixed amount of resources how do we
+actually support
+multiple programs running or appearing
+to run at the same time
+we need to provide the user the illusion
+that all of these programs are running
+at exactly the same time
+even though from a physical perspective
+they couldn't actually do it
+so our implementation is how do we
+implement that feature
+and to the person on twitch who says
+that you
+uh might be developing malware please
+don't do that in this course
+at least don't don't do it on the school
+servers yeah
+so a few definitions then we have the
+kernel this is i want to say the core
+of your operating system that does all
+of the actual
+work it handles all of the exceptions
+interrupts
+system calls if you want to save a file
+it's your kernel doing it
+if you want to write a file like read a
+file it's your kernel doing it
+if you want to malloc something
+sometimes your kernel is involved if you
+push a key
+on your mouse that's your kernel
+handling that
+the kernel is the core
+and then the operating system as a whole
+is the kernel and
+a bunch of other things like utility
+programs task managers disk defrags you
+know scandisk
+fdisk things like that its command
+interpreters are often a part of
+operating systems things like bash
+or command.exe if you're in windows
+um and programming libraries like posix
+and opengl
+those are often included with your
+operating system
+well depending on your os
+but that's the idea your operating
+system is the kernel
+which handles all of the the low level
+details and then a bunch of
+extra programs that they they put on top
+now there's two types of kernels there's
+a monolithic
+kernel which i say is everything in the
+kitchen sink goes in the kernel
+and that's what you're used to that's
+windows that's mac os that's
+linux based operating systems that's ios
+it's everything in the kitchen sink that
+could go in the kernel does
+so you want your desktop environment in
+the kernel yeah let's do it
+you want virtual memory in the kernel
+ipc in the kernel device drivers let's
+put it all in the kernel
+your kernel ends up really big but
+that's every major operating system
+then there's a different kind of
+operating system calling microkernel
+which is
+we're going to put the bare minimum of
+things into the kernel and everything
+else
+will be a user program and there are
+many um micro kernel operating systems
+out there
+one of them you've might have heard of
+is qnx which is now owned by blackberry
+which i'm sorry it's still weird for me
+to call them blackberry because they've
+always been rimmed to me
+um but rim actually acquired a qnx qnx
+by the way we'll talk about it a later
+date but it's a waterloo
+thing um it is a micro kernel operating
+system and they put the
+absolute minimum of things in the kernel
+function it's really cool
+there's some really cool things that you
+can use micro kernel oss for
+because they they're so small that they
+can fit on hardware
+and when you can fit your os on hardware
+that's so fast
+so fast
+so question is is it the car security
+thing qnx
+so qnx is a real-time micro kernel
+operating system
+uh that was developed by a couple of
+gentlemen
+who were bored in the trains course at
+waterloo
+they wanted the real world to have a
+real-time os and so they developed qnx
+and it's been used in a lot of things
+but yes it is used in vehicles it is
+used
+in airplanes in carrier-grade routers
+because it is a small micro kernel os
+and it can actually affect
+hardware and it's also real-time so what
+is a real-time os then
+because we just said os is our real time
+so what is the difference between an os
+and a real-time os where we're actually
+using the term real-time os
+a real-time operating system as opposed
+to just an operating system is one
+where we're especially picky about
+response times to events we want
+guarantees
+that things are going to be responded to
+in a timely fashion
+you do not want windows driving your car
+you do not want mac os driving your car
+you do not want
+linux driving your car because they are
+not real-time operating systems
+and when they see something in front of
+them let's say they have a sensor to
+sense you know somebody's crossing the
+street
+there's no guarantee that we will
+respond
+to that event in enough time to react to
+it
+a real-time os makes a guarantee that
+when an event happens
+we respond immediately
+or in some guaranteed amount of time
+which makes real-time os is the kind of
+a west you want for self-driving
+vehicles
+controlling robots like for making the
+vehicles and things like that
+so real-time mosses are
+a little bit more stringent about those
+um restrictions once upon a time i used
+qnx because you know
+when people come to university they try
+new things and so i tried new operating
+systems
+new operating systems and new video
+games
+all right so this is kind of a pictorial
+picture
+of how things are actually laid out here
+so another question on twitch is why
+isn't macos windows
+why are they not real time
+these operating systems i mean if i had
+to take a guess because keep them i've
+never worked for microsoft
+never work for apple
+um it's not really
+my thing um when when i was a co-op
+student
+i i was a very hardcore linux developer
+so the thought of working for
+non-linux places was
+not cool now i work anywhere
+but here's the thing so those operating
+systems were not developed
+with self-driving vehicles in mind they
+were not developed with
+hey let's let's make an os that's going
+to control an aircraft
+or let's make an os that's going to
+control
+a robot mac os and windows were
+developed for consumers
+they weren't even developed for business
+purposes and we're going to talk a bit
+about os history and you'll see
+just how different the unix side of the
+world
+was from mac os and windows up until
+about 2000
+very very different things
+so they were trying to develop
+operating systems for home users for
+basic
+office use and from that perspective
+a real-time operating system which
+requires a lot of
+extra thought and care in its
+development it just doesn't offer
+the home user any additional feature
+because i don't need if i'm
+you know interacting with you know
+chrome
+i don't need my mouse click to respond
+that much faster it's already fast
+enough
+okay maybe it wasn't in the early 90s
+but you know
+that that was a hardware problem not a
+software problem
+so it's one of those things where
+consumer operating systems haven't
+really needed the real-time response
+rate the real-time response rate is
+really more
+for things like hey
+there's a person on the road i need to
+stop the car right now
+we don't need that now i know if you're
+a game if you're a gamer
+you might be like i totally need that
+though because less than 60 frames per
+second is awful i get you
+i understand but you could just buy a
+better video card too right
+all right i mean again i've never worked
+for apple i've never worked for
+microsoft i don't know what was going
+through their heads when they were
+designing those two operating systems
+but if i had to take a guess they were
+developing an os
+for a market a specific market and that
+is the home user
+basic office usage and for those two
+environments
+real time is just not required it's it's
+not needed
+all right so this is a view of the world
+uh we have you'll see here i've isolated
+a bunch of things from each other
+so the operating system kernel is what i
+like to say
+stands between the physical hardware and
+the user programs
+and when i say it stands between it is
+isolated
+from the user programs and we will talk
+more about this when we talk about
+processes but we
+literally are not going to let user
+programs
+directly interact with the kernel in any
+way shape or form
+and there are many reasons for this
+one of them is security another one is
+abstraction
+and then the other thing is the kernel
+is the only thing that's allowed to talk
+to hardware
+so your user programs are going to be
+completely isolated from hardware
+and you might think to yourself why
+would you do that but here's my counter
+argument
+why wouldn't you do that let me explain
+what would happen
+if we did not isolate user programs from
+hardware the way we
+do and this goes back to the early 90s
+so there was a time where this
+abstraction was
+not as strong as it was now and so when
+you bought a
+game you had to make sure that the specs
+on the side of the box
+actually matched your computer and if it
+didn't
+let's say you didn't have a creative
+sound blaster you had
+some knockoff game may not work if you
+did not have an nvidia graphics card
+game may not work here's the thing
+all of the major operating systems of
+today update themselves constantly
+for example uh apple today is telling me
+that there's a big update to big sur
+of course i'm sitting here and i'm like
+oh i don't want to do it i don't want to
+do it i don't want to update it
+i'll get there and windows does it like
+every week
+here's an update let's push an update
+every time you do an update
+do you have to download a new version of
+chrome do you have to install a new copy
+of red alert too
+no that's ridiculous and the reason why
+you don't have to do that
+is because of this abstraction the user
+program is isolated from the kernel
+so if we make changes to the kernel via
+an update it doesn't
+impact the user programs and if i decide
+to change the graphics card in my
+desktop so i have a big desktop research
+machine that actually needs a new
+motherboard
+i'm going to put a new motherboard in it
+i don't need to change
+any of the software running because i
+have abstracted the user programs from
+that
+so we do this
+for security reasons but also too
+abstract now each operating system has
+varying levels of success in this
+abstraction
+and i keep kind of referring hinting
+back at apple's not doing this that well
+because for those of you apple users
+who've i want to say
+made the mistake of doing the updates
+you may have noticed that you did have
+to update your zoo programs
+and so a few weeks ago i actually made
+the update to big sur
+from catalina and let me tell you all of
+the programs that broke
+obs which is my streaming software i had
+to update it
+and um
+zoom broke acrobat reader broke there
+was like something else that broke
+ broke like the number of things
+that broke when i made the upgrade from
+catalina at a big start was was
+non-trivial
+and i've had to reinstall new versions
+of each of these things
+and wait for patches to come to fix it
+so they work under big sur
+i wanted to do desktop capture of audio
+and
+the main driver for that doesn't even
+work in big sur
+and when i made the update from high
+sierra to catalina a similar situation
+happen
+obs broke broke
+all of my adobe products broke my big
+one was stereo photo maker i do a lot of
+stereo 3d
+not supported anymore because they drop
+support for 3d apps
+this is an example of where an operating
+system developer has
+not done a good job of abstracting
+the kernel and its behavior from the
+user programs
+and what's generally going on here is
+they've changed the libraries the the
+utilities and libraries that have been
+provided
+uh by the by mac os to the user programs
+they have changed and the libraries have
+changed in such a way they don't have
+um they're not backwards compatible or
+if they've changed some kind of security
+protocols in the operating system
+and so if you have the previous version
+of the software it it won't interact
+with the new thing
+that's a problem that's
+not a good design maybe those changes
+were necessary
+but there had to have been a way that it
+could have been done such that the
+user's programs don't break
+i know when windows and apple what
+they're doing is they're pruning out old
+code they're saying okay
+we don't want to support this anymore
+we're going to get rid of it completely
+whereas windows is microsoft's approach
+is actually the opposite
+they will make the security updates they
+will make the changes
+but they have a tendency to leave in
+some way
+compatibility for the older software
+so their code base is huge interesting
+discussions about abstraction
+all right
+so there's a question on twitch about an
+anti-cheat
+valorant i'm not sure what that is
+um if it is a kernel level program then
+yes it has ring zero that is kernel
+privilege and that means it can
+communicate directly with the kernel and
+its data structures
+um how does it circumvent the system
+call interface well because it's a part
+of the kernel
+it doesn't need to use system calls at
+all if you are a part of the kernel then
+you do not
+need to use system calls system calls
+are for the user programs
+and um then another question
+says does it mean the kernel interface
+keeps the same for apps
+so what happens
+is and we talk about this in processes
+in about a month or so
+but there's this this interface it's not
+like a programming interface in order
+for your user program to make the kernel
+do anything it has to raise an exception
+on the cpu
+and the kernel of the operating system
+is going to present
+a list of all of the different system
+calls you can force it to do and the
+parameters for each of them
+um that interface if you take
+things away then user programs that
+we're using it will no longer function
+so you you need to keep that there and
+if you change the parameters then it's
+going to mess up the user programs as
+well
+so it's important that that kernel
+interface or that the system call
+library
+you can expand it but if you remove it
+or alter it
+it's going to impact the user programs
+which is why it's generally
+not a good idea but this is something i
+believe apple is actually doing
+um and they are i i get it they want to
+be moving forward
+and they want to force people to move
+forward and away from things that they
+deem
+you know why are you using 32-bit apps
+when we've had 64-bit processors for
+consumers for the last 20 years
+well my piece of research software that
+was written by
+one lovely individual on the other side
+of the planet happens to only be in
+32-bit
+[Music]
+so it's i get what they're doing
+but it causes a lot of headaches for
+some people not for everybody
+just some people all right
+so then our operating system it's
+abstracting everything that's really
+what i want to communicate with you
+today
+operating systems are abstracting
+everything in the hardware and the
+implementation details
+and providing them to the user program
+as this consistent
+thing where you don't need to know the
+details for examples
+files and file systems are an
+abstraction of secondary storage
+you don't know how the bits are stored
+on the disk you don't know where they're
+stored on the disk
+i mean you might think that oh the path
+is where it's stored no it's not
+it's totally not that's just how we find
+a piece of information to
+find where the thing is actually stored
+we'll talk about that in file systems
+when you use files and file systems you
+don't need to know anything about the
+secondary storage
+it's completely abstracted for you your
+address space is an abstraction of
+physical memory
+and we'll talk more about that in
+virtual memory processes and threads
+that is an actual abstraction of how
+programs are executed
+sockets and pipes that you would use for
+networking and inter-process
+communication
+that is abstractions again of underlying
+systems in the kernel
+for actually communicating with a
+network
+so everything we do is an abstraction of
+the actual reality
+and this has made life really easy
+because now when you want to develop a
+game
+you don't need to worry about which gpu
+you have you don't need to
+worry about what file system you have by
+having all of these abstractions you can
+focus on the user program development
+and not what's going on
+in the hardware and it's very different
+now than where we were 20 or 30 years
+ago
+so these are the topics we're going to
+be covering throughout this course we're
+going to start with threads and
+concurrency on thursday
+and um then we're going to talk about
+synchronization
+which is by when you have a whole bunch
+of people suddenly accessing the same
+piece of memory at the same time
+that causes some problems so
+synchronization is how do we solve those
+problems
+and then we'll talk about processes in
+the kernel so that's going to be looking
+at things like the system call interface
+uh then we're going to spend the most of
+our time on virtual memory which is how
+do we abstract
+physical memory and then we have
+scheduling devices and device management
+so this is how do you write a device
+driver
+how do you interact with the device and
+we'll talk a lot about
+how hard drives work and how ssds work i
+know hard drives might seem like
+old-fashioned to you but
+a 14 terabyte hard drive is still
+cheaper than a 14 terabyte ssd
+and then we'll talk about file systems
+which is how do we actually
+store the data on the disk so we can
+retrieve it later
+and then we'll wrap everything up with a
+discussion of virtual machines
+so that is the overview of what we're
+going to be talking about this term
+and hopefully you will learn something
+new and
+will improve your c programming skills
+as a result of this cnc
+so i will see you on thursday at 11
+15. i hope you have a lovely afternoon
+it's kind of a cloudy day here in
+waterloo but um
+maybe get outside there's lots of baby
+geese on campus i can tell you that
+so that's fine all right
+so we'll see you on thursday then
+[Music]
+so
+[Music]
+uh
+[Music]
+uh
+[Music]
+uh
+[Music]
+uh
+[Music]
+uh
+man
+[Music]
+is
+[Music]
+so
+i i
+i
+[Music]
+hey
+you
