@@ -16,33 +16,32 @@ for url in playlist:
 
 # print(urls)
 
-video_ids = []
 
 pattern = r'(?<=v=)[\w-]+'
 
+video_idx = {}
+# transcripts = {}
+uid = 0
+
 for youtube_url in urls:
-    # Find the video ID using regex
     match = re.search(pattern, youtube_url)
 
     if match:
         video_id = match.group()
-        video_ids.append(video_id)
-        # print("Video ID:", video_id)
+        # video_ids.append(video_id)
     else:
         print("Video ID not found.")
 
-# print(video_ids)
-
-for id in video_ids:
     # retrieve the available transcripts
-    transcript_list = YouTubeTranscriptApi.list_transcripts(id)
+    transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
 
     # using the srt variable with the list of dictionaries
     # obtained by the .get_transcript() function
-    srt = YouTubeTranscriptApi.get_transcript(id)
+    srt = YouTubeTranscriptApi.get_transcript(video_id)
 
-    transcripts = {}
     transcript = '\n'.join(i["text"] for i in srt)
-    transcripts[id] = transcript
+    # transcripts[video_id] = transcript
+    video_idx[uid] = (youtube_url, transcript)
+    uid += 1
 
-# print(transcripts)
+print(video_idx)
