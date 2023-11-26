@@ -1,7 +1,10 @@
 import re
 from pytube import Playlist
 from youtube_transcript_api import YouTubeTranscriptApi
-
+import cohere
+co = cohere.Client('rGjz0KNIMSReCgEyzpEUDQpYzxSoXb85RjjdyAel')
+from pytube import YouTube
+import json
 
 # URL of the YouTube playlist
 URL_PLAYLIST = "https://www.youtube.com/playlist?list=PLEoM_i-3sen_w5IYh0d5xtnpLHJeeO8l5"
@@ -22,6 +25,8 @@ pattern = r'(?<=v=)[\w-]+'
 video_idx = {}
 uid = 0
 
+
+documents = []
 for youtube_url in urls:
     match = re.search(pattern, youtube_url)
 
@@ -38,7 +43,53 @@ for youtube_url in urls:
     srt = YouTubeTranscriptApi.get_transcript(video_id)
 
     transcript = '\n'.join(i["text"] for i in srt)
-    video_idx[uid] = (youtube_url, transcript)
+    response = co.summarize(
+    text=transcript,
+    )
+    video_idx[uid] = (youtube_url, transcript, response.summary)
     uid += 1
 
-print(video_idx)
+    document = {
+        'title: ': uid,
+        'snippet': response.summary,
+    }
+    documents.append(document)
+
+# print(video_idx)
+
+
+# documents = []
+# # cohere to summarize
+# for file in video_idx:
+#     url, transcript = video_idx[file]
+
+#     response = co.summarize(
+#     text=transcript,
+#     )
+
+#     # Create a YouTube object
+#     yt = YouTube(url)
+
+#     # Get the title of the video
+#     video_title = yt.title
+
+#     document = {
+#         'Title: ': video_title,
+#         'Summary': response.summary,
+#     }
+
+#     print(document)
+#     documents.append(document)
+
+#     # get title3
+
+# Convert documents list to JSON format
+json_data = json.dumps(documents, indent=2)  # Convert list of dictionaries to JSON string
+
+# Print the JSON-formatted data
+print(json_data)
+
+# Write JSON data to a file
+output_file = 'documents.json'  
+with open(output_file, 'w') as file:
+    file.write(json_data)
