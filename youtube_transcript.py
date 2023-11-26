@@ -20,7 +20,6 @@ for url in playlist:
 pattern = r'(?<=v=)[\w-]+'
 
 video_idx = {}
-# transcripts = {}
 uid = 0
 
 for youtube_url in urls:
@@ -28,7 +27,6 @@ for youtube_url in urls:
 
     if match:
         video_id = match.group()
-        # video_ids.append(video_id)
     else:
         print("Video ID not found.")
 
@@ -40,7 +38,6 @@ for youtube_url in urls:
     srt = YouTubeTranscriptApi.get_transcript(video_id)
 
     transcript = '\n'.join(i["text"] for i in srt)
-    # transcripts[video_id] = transcript
     video_idx[uid] = (youtube_url, transcript)
     uid += 1
 
