@@ -84,7 +84,7 @@ def process(response):
     indexes_array = [entry['document_ids'][0] for entry in citation_docs]
     print("INDEX OF VIDEO")
     numbers_after_underscore = [int(entry.split('_')[1].split(':')[0]) if '_' in entry else None for entry in indexes_array]
-    print(numbers_after_underscore[0])
+    print(numbers_after_underscore[0] - 1)
     webbrowser.open(urls[numbers_after_underscore[0]])
 
 def openVid():
@@ -96,9 +96,8 @@ def openVid():
     documents=documents,
         prompt_truncation= "AUTO"
     )
-    print(response)
-
-    # print("The response is ")
+    
+    print(response.text)
 
     # print(citation_docs)
     # indexes_array = [entry['document_ids'][0] for entry in citation_docs]
