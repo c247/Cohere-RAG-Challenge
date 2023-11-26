@@ -51,7 +51,7 @@ def YoutubeParse(url):
         uid += 1
 
         document = {
-            'title: ': uid,
+            'title': str(uid),
             'snippet': response.summary,
         }
         documents.append(document)
@@ -65,6 +65,8 @@ def YoutubeParse(url):
     print(json_data)
 
     # Write JSON data to a file
-    output_file = 'documents.json'  
+    output_file = 'documents_auto.json'  
     with open(output_file, 'w') as file:
         file.write(json_data)
+
+YoutubeParse("https://www.youtube.com/playlist?list=PLEoM_i-3sen_w5IYh0d5xtnpLHJeeO8l5")
