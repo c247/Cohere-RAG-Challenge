@@ -1,6 +1,7 @@
 cohere==4.37
 pytube==15.0.0
 spacy>=2.2.0,<3.0.0
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
 streamlit==1.28.2
 youtube_transcript_api==0.6.1
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-2.0.0/es_core_news_sm-2.0.0.tar.gz
