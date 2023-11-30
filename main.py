@@ -211,7 +211,7 @@ def action(url, msg):
     yt = YouTube(vidurl)  
     video_length = yt.length
     print(video_length)
-    percentPos = find_question_position_nlp(transcripts[transcriptSelected], usermsg)
+    percentPos = find_question_position_basic(transcripts[transcriptSelected], usermsg)
     time = int(video_length * percentPos)
     print(time)
     finalOpenTime(time, vidurl)
