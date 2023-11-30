@@ -7,7 +7,6 @@ co = cohere.Client('rGjz0KNIMSReCgEyzpEUDQpYzxSoXb85RjjdyAel')
 from pytube import YouTube
 import json
 import webbrowser
-import spacy
 from pytube import YouTube
 import streamlit as st
 
@@ -165,9 +164,9 @@ def finalOpenTime(time, url):
     urltime = url + "&t=" + str(time)
     webbrowser.open(urltime)
 
-def find_question_position_nlp(transcript, question):
+def find_question_position_basic(transcript, question):
     """
-    Find the percentage of the transcript where the question is answered using NLP.
+    Find the percentage of the transcript where the question is answered without using NLP.
 
     Parameters:
     - transcript (str): The transcript of the lecture.
@@ -176,26 +175,22 @@ def find_question_position_nlp(transcript, question):
     Returns:
     - float: The percentage of the transcript where the question is answered.
     """
-    # Load the English language model from spacy
-    nlp = spacy.load("en_core_web_sm")
-
-    # Process the transcript and the question using spacy
-    doc_transcript = nlp(transcript)
-    doc_question = nlp(question)
+    # Convert both transcript and question to lowercase for case-insensitive comparison
+    transcript_lower = transcript.lower()
+    question_lower = question.lower()
 
     # Find the position of the question in the transcript
-    question_start = doc_transcript.text.lower().find(doc_question.text.lower())
+    question_start = transcript_lower.find(question_lower)
 
     # If the question is not found, return -1
     if question_start == -1:
         return -1
 
     # Calculate the percentage position based on the character offsets
-    percentage_position = (question_start / len(doc_transcript))
+    percentage_position = (question_start / len(transcript_lower))
     print("percent")
     print(percentage_position)
     return percentage_position
-
 
 
 
