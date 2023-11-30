@@ -7,14 +7,18 @@ co = cohere.Client('rGjz0KNIMSReCgEyzpEUDQpYzxSoXb85RjjdyAel')
 from pytube import YouTube
 import json
 import webbrowser
+import spacy
+from pytube import YouTube
+import streamlit as st
 
 
+# Global variables
 transcriptSelected = 0
 globalvideomap= {}
 documents = []
 urls = []
 transcripts = []
-usermsg = ""
+global usermsg
 
 def storeURLS(url):
     playlist = Playlist(url)
@@ -44,8 +48,6 @@ def Transcript(url):
         else:
             print("Video ID not found.")
 
-        # retrieve the available transcripts
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
 
         # using the srt variable with the list of dictionaries
         # obtained by the .get_transcript() function
@@ -59,7 +61,7 @@ def YoutubeParse(url):
     playlist = Playlist(url)
     print('Number Of Videos In playlist: %s' % len(playlist.video_urls))
 
-    # print(urls)
+    print(urls)
 
 
     pattern = r'(?<=v=)[\w-]+'
@@ -85,13 +87,14 @@ def YoutubeParse(url):
         srt = YouTubeTranscriptApi.get_transcript(video_id)
 
         transcript = '\n'.join(i["text"] for i in srt)
+        print(transcript)
         response = co.summarize(
         text=transcript,
         )
         video_idx[uid] = (youtube_url, transcript, response.summary)
         globalvideomap[uid] = youtube_url
         document = {
-            'title: ': uid,
+            'title': str(uid),
             'snippet': response.summary,
         }
         uid += 1
@@ -107,7 +110,7 @@ def YoutubeParse(url):
     print(json_data)
 
     # Write JSON data to a file
-    output_file = 'documents.json'  
+    output_file = 'documents_auto.json'  
     with open(output_file, 'w') as file:
         file.write(json_data)
 
@@ -115,27 +118,32 @@ def YoutubeParse(url):
 
 def process(response):
     citation_docs = response.citations
-    # print(citation_docs)
+    print(citation_docs)
     indexes_array = [entry['document_ids'][0] for entry in citation_docs]
     print("INDEX OF VIDEO")
     numbers_after_underscore = [int(entry.split('_')[1].split(':')[0]) if '_' in entry else None for entry in indexes_array]
     print(numbers_after_underscore[0])
-    transcriptSelected = numbers_after_underscore[0]-1
-    return urls[numbers_after_underscore[0] - 1]
+    global transcriptSelected 
+    transcriptSelected = numbers_after_underscore[0]
+    return urls[numbers_after_underscore[0]]
 
-def getdocindex(response):
-    citation_docs = response.citations
-    # print(citation_docs)
-    indexes_array = [entry['document_ids'][0] for entry in citation_docs]
-    print("INDEX OF VIDEO")
-    numbers_after_underscore = [int(entry.split('_')[1].split(':')[0]) if '_' in entry else None for entry in indexes_array]
-    print(numbers_after_underscore[0]-1)
+# def getdocindex(response):
+#     citation_docs = response.citations
+#     # print(citation_docs)
+#     indexes_array = [entry['document_ids'][0] for entry in citation_docs]
+#     print("INDEX OF VIDEO")
+#     numbers_after_underscore = [int(entry.split('_')[1].split(':')[0]) if '_' in entry else None for entry in indexes_array]
+#     print(numbers_after_underscore[0]-1)
 
     
 
 def openVid():
-    msg = input('What are you looking to learn? ')
-    usermsg = msg
+    global usermsg
+    msg = usermsg
+    
+    print("Finding relevant course video...")
+
+    print("Opening Video")
     co = cohere.Client('rGjz0KNIMSReCgEyzpEUDQpYzxSoXb85RjjdyAel')
     with open('./documents_auto.json', 'r') as file:
         documents = json.load(file)
@@ -147,88 +155,87 @@ def openVid():
     
     print(response.text)
 
-    # print(citation_docs)
-    # indexes_array = [entry['document_ids'][0] for entry in citation_docs]
-    # val_array = [int(entry[-1]) for entry in indexes_array]
-    # print(val_array)
 
     vidurl = process(response)
     return vidurl
 
-# def getLengthVideo(url):
-#     # Create a YouTube object
-#     yt = YouTube(url)
-
-#     # Get the video length in seconds
-#     video_length_seconds = yt.length
-
-#     return video_length_seconds
 
 
-def finalOpenTime(chunk, totalChunks, videoLength, url):
-    webbrowser.open(url)
+def finalOpenTime(time, url):
+    urltime = url + "&t=" + str(time)
+    webbrowser.open(urltime)
+
+def find_question_position_nlp(transcript, question):
+    """
+    Find the percentage of the transcript where the question is answered using NLP.
+
+    Parameters:
+    - transcript (str): The transcript of the lecture.
+    - question (str): The question to search for in the transcript.
+
+    Returns:
+    - float: The percentage of the transcript where the question is answered.
+    """
+    # Load the English language model from spacy
+    nlp = spacy.load("en_core_web_sm")
+
+    # Process the transcript and the question using spacy
+    doc_transcript = nlp(transcript)
+    doc_question = nlp(question)
+
+    # Find the position of the question in the transcript
+    question_start = doc_transcript.text.lower().find(doc_question.text.lower())
+
+    # If the question is not found, return -1
+    if question_start == -1:
+        return -1
+
+    # Calculate the percentage position based on the character offsets
+    percentage_position = (question_start / len(doc_transcript))
+    print("percent")
+    print(percentage_position)
+    return percentage_position
 
 
-def search_doc(document, msg):
-    def split_text(text, chunk_size):
-        # Split the text into chunks of specified size
-        chunks = [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
-        return chunks
-
-    # Set the desired chunk size
-    chunk_size = 2000  # You can adjust this to your preferred chunk size
-
-    # Split the long text into chunks
-    text_chunks = split_text(document, chunk_size)
-
-    chunks = []
-
-    # Print the chunks
-    for i, chunk in enumerate(text_chunks, start=1):
-        doc = {
-            'title': i,
-            'snippet': chunk,
-        }
-        chunks.append(doc)
-
-    co = cohere.Client('rGjz0KNIMSReCgEyzpEUDQpYzxSoXb85RjjdyAel')
-    
-    response = co.chat(
-    message= usermsg,
-    documents=documents,
-        prompt_truncation= "AUTO"
-    )
-
-    print(response.text)
-    index = getdocindex(response)
-    percentLocation = index / len(chunks)
-
-    print(percentLocation)
-    return percentLocation
 
 
-    
-   
+def action(url, msg):
+    storeURLS(url)
+    YoutubeParse(url)
+
+    Transcript(url)
+
+    print("Output added to documents.json")
 
 
-url = input("Enter Youtube playlist URL: ")
+    vidurl = openVid()
 
-# YoutubeParse(url)
-storeURLS(url)
-# Transcript(url)
+    print("*********************")
+    print(usermsg)
 
-print("Output added to documents.json")
+    yt = YouTube(vidurl)  
+    video_length = yt.length
+    print(video_length)
+    percentPos = find_question_position_nlp(transcripts[transcriptSelected], usermsg)
+    time = int(video_length * percentPos)
+    print(time)
+    finalOpenTime(time, vidurl)
 
-print("Generating Response...")
 
-vidurl = openVid()
+def main():
+    st.title("YouTube Transcript Analysis")
+    global usermsg
+    # Accept playlist URL and user message
+    url = st.text_input("Enter YouTube playlist URL:")
+    usermsg = st.text_input("What do you want to learn?")
 
+    # Button to trigger the action
+    if st.button("Generate Summary and Open Video"):
+        action(url, usermsg)
 
-# print(getLengthVideo(url))
-
-finalOpenTime(0, 0, 0, vidurl)
-
-# search_doc(transcripts[transcriptSelected], usermsg)
+# Run the Streamlit app
+if __name__ == "__main__":
+    main()
 
 
 
