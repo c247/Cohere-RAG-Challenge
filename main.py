@@ -18,6 +18,7 @@ from openai import OpenAI
 
 load_dotenv()
 co = cohere.Client(st.secrets["coherekey"])
+# co = cohere.Client(os.getenv("COHERE_KEY"))
 
 # Global variables
 transcriptSelected = 0
@@ -163,6 +164,8 @@ def openVid():
 
     # print("Opening Video")
     co = cohere.Client(st.secrets["coherekey"])
+    # co = cohere.Client(os.getenv("COHERE_KEY"))
+
     with open('./documents_auto.json', 'r') as file:
         documents = json.load(file)
     response = co.chat(
@@ -258,17 +261,24 @@ def find_question_position_basic(transcript, question):
     # print(percentage_position)
     # return percentage_position
 
+
     client = OpenAI(api_key=st.secrets["openaikey"],)
+    # client = OpenAI(api_key=os.getenv("API_KEY"),)
+
+
     global usermsg
+
+    
     response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-4-1106-preview",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": f"{transcript} \n What percent way through what percent way through the text is: \n  ~ {usermsg} ~\n talked about\n Just give me a single integer without the percent sign in the output no explanation or extra text needed."}
-    ]
+        {"role": "user", "content": f"{transcript} \n What percent way through what percent way through the question/prompt inside the ~ signs: \n  ~{usermsg}~\n talked about/answered.\n Just give me a single integer without the percent sign in the output/response no explanation or extra text needed. Answer in json with a field called answer and value being an number"}
+    ],
+    response_format={"type": "json_object"},
     )
     print(response)
-    val = int(response.choices[0].message.content)
+    val = int(eval(response.choices[0].message.content)["answer"])
     return val/100
 
 
@@ -353,7 +363,7 @@ def main():
                     '<img class="github-logo" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub Logo">'
                     '<a href="https://github.com/c247">Vijay </a> '
                     '<a href="https://github.com/katarinamak">Katarina </a> '
-                    '<a href="https://github.com/mary1afshar</a>'
+                    '<a href="https://github.com/mary1afshar">Maryam</a>'
                     '</div>', unsafe_allow_html=True)
 # Run the Streamlit app
 if __name__ == "__main__":
