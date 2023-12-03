@@ -12,6 +12,11 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
+from firebase_admin import credentials
+from firebase_admin import auth
+from test import app
+
+
 
 load_dotenv()
 co = cohere.Client(st.secrets["coherekey"])
@@ -224,16 +229,6 @@ def create_json_array(grouped_transcripts):
 
 
 def find_question_position_basic(transcript, question):
-    """
-    Find the percentage of the transcript where the question is answered without using NLP.
-
-    Parameters:
-    - transcript (str): The transcript of the lecture.
-    - question (str): The question to search for in the transcript.
-
-    Returns:
-    - float: The percentage of the transcript where the question is answered.
-    """
     # grouped = split_transcript(question)
     # totalDocuments = len(grouped)
     # jsonDocuments = create_json_array(grouped)
@@ -301,35 +296,67 @@ def action(url, msg):
     # print(time)
     finalOpenTime(time, vidurl)
 
-
+global user_authenticated
+user_authenticated = True
 def main():
-    st.title("GoHere Youtube Playlist AI Search")
-   
+    st.set_page_config(
+        page_title="GoHere",
+        page_icon="📚", 
+    )
 
-    global usermsg
-    # Accept playlist URL and user message
-    url = st.text_input("Enter YouTube playlist URL:")
-    usermsg = st.text_input("What do you want to learn?")
+    if user_authenticated:
+        st.title("GoHere")
+        st.header("Youtube Playlist AI Assistant")
 
-    # Button to trigger the action
-    if st.button("Submit"):
-        global finalURL
-        finalURL = ""
-        action(url, usermsg)
-        if finalURL:
-            st.success(f"Final URL: {finalURL}")
-        # st.write("Made by: [Vijay](link-to-vijay-github), [Katarina](link-to-katarina-github), [Maryam](link-to-maryam-github)")
+        global usermsg
+        url = st.text_input("Enter YouTube playlist URL:")
+        usermsg = st.text_input("What do you want to learn?")
 
-    footer_container = st.container()
+        # Button to trigger the action
+        if st.button("Submit"):
+            global finalURL
+            finalURL = ""
+            action(url, usermsg)
+            if finalURL:
+                st.success(f"Final URL: {finalURL}")
 
-    # st.write("Made by: [Vijay](link-to-vijay-github), [Katarina](link-to-katarina-github), [Maryam](link-to-maryam-github)")
-    hide_st_style = """
+        footer_container = st.container()
+
+        hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
+            .made-by {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                font-size: 18px;
+                color: #777;
+                display: flex;
+                align-items: center;
+                text-decoration: underline;
+            }
+            .github-logo {
+                height: 30px;
+                width: 30px;
+                margin-right: 5px;
+            }
+            .made-by a {
+                text-decoration: none;  /* Remove blue hyperlink styling */
+                color: #777;  /* Set the color to a desired value */
+                margin-right: 10px;  /* Add space between the names */
+            }
             </style>
             """
-    st.markdown(hide_st_style, unsafe_allow_html=True)
+        st.markdown(hide_st_style, unsafe_allow_html=True)
+
+        
+        st.markdown('<div class="made-by">'
+                    '<img class="github-logo" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub Logo">'
+                    '<a href="https://github.com/c247">Vijay </a> '
+                    '<a href="https://github.com/katarinamak">Katarina </a> '
+                    '<a href="https://github.com/mary1afshar</a>'
+                    '</div>', unsafe_allow_html=True)
 # Run the Streamlit app
 if __name__ == "__main__":
     main()
