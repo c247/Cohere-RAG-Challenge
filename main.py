@@ -12,9 +12,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
-from firebase_admin import credentials
-from firebase_admin import auth
-from test import app
+
 
 
 
