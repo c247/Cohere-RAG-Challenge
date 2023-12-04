@@ -335,10 +335,11 @@ def main():
         if st.button("Submit"):
             global finalURL
             finalURL = ""
-            st.success(f"Query Answer: {response.choices[0].message.content}")
+            
             action(url, usermsg)
             if finalURL:
                 st.success(f"Final URL: {finalURL}")
+                st.success(f"Query Answer: {response.choices[0].message.content}")
 
         footer_container = st.container()
 
