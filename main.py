@@ -322,14 +322,14 @@ def main():
         url = st.text_input("Enter YouTube playlist URL:")
         usermsg = st.text_input("What do you want to learn?")
         client = OpenAI(api_key=st.secrets["openaikey"],)
+        # client = OpenAI(api_key=os.getenv("API_KEY"),)
         response = client.chat.completions.create(
-        model="gpt-4-1106-preview",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": f"{usermsg}"}
-        ],
+            model="gpt-4-1106-preview",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": f"{usermsg}"}
+            ],
         )
-        
 
         # Button to trigger the action
         if st.button("Submit"):
@@ -340,6 +340,15 @@ def main():
             if finalURL:
                 st.success(f"Final URL: {finalURL}")
                 st.success(f"Query Answer: {response.choices[0].message.content}")
+
+        # Create the expander for "How to"
+        with st.expander("?"):
+            st.subheader("GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search ")
+            st.write("1. Enter the YouTube playlist URL of lecture content")
+            st.write("2. Enter what you want to learn")
+            st.write("3. Click the 'Submit' button")
+            st.write("4. Wait...for a while")
+            st.write("5. GoHere will locate the specific video and timestamp where the content is covered and also provide its best explanation")
 
         footer_container = st.container()
 
@@ -371,7 +380,6 @@ def main():
             """
         st.markdown(hide_st_style, unsafe_allow_html=True)
 
-        
         st.markdown('<div class="made-by">'
                     '<img class="github-logo" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub Logo">'
                     '<a href="https://github.com/c247">Vijay </a> '
