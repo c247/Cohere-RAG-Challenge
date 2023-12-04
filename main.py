@@ -321,11 +321,21 @@ def main():
         global usermsg
         url = st.text_input("Enter YouTube playlist URL:")
         usermsg = st.text_input("What do you want to learn?")
+        client = OpenAI(api_key=st.secrets["openaikey"],)
+        response = client.chat.completions.create(
+        model="gpt-4-1106-preview",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": f"{usermsg}"}
+        ],
+        )
+        
 
         # Button to trigger the action
         if st.button("Submit"):
             global finalURL
             finalURL = ""
+            st.success(f"Query Answer: {response.choices[0].message.content}")
             action(url, usermsg)
             if finalURL:
                 st.success(f"Final URL: {finalURL}")
