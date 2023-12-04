@@ -349,7 +349,7 @@ def main():
             .made-by {
                 position: fixed;
                 bottom: 10px;
-                leftt: 10px;
+                left: 10px;
                 font-size: 18px;
                 color: #777;
                 display: flex;
@@ -364,7 +364,7 @@ def main():
             .made-by a {
                 text-decoration: none;  /* Remove blue hyperlink styling */
                 color: #777;  /* Set the color to a desired value */
-                margin-left: 10px;  /* Add space between the names */
+                margin-right: 10px;  /* Add space between the names */
             }
             </style>
             """
