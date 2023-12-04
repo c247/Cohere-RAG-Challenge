@@ -229,7 +229,7 @@ def create_json_array(grouped_transcripts):
     return json_array
 
 
-def find_question_position_basic(transcript, question):
+def find_question_position_basic(transcript, question, video_length):
     # grouped = split_transcript(question)
     # totalDocuments = len(grouped)
     # jsonDocuments = create_json_array(grouped)
@@ -273,12 +273,14 @@ def find_question_position_basic(transcript, question):
     model="gpt-4-1106-preview",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": f"{transcript} \n What percent way through what percent way through the question/prompt inside the ~ signs: \n  ~{usermsg}~\n talked about/answered.\n Just give me a single integer without the percent sign in the output/response no explanation or extra text needed. Answer in json with a field called answer and value being an number"}
+        {"role": "user", "content": f"Look at this transcript(between the ~ signs) of a class lecture:\n\n ~{transcript}~ \n\n The video corresponding to the above transcript is {video_length} seconds long. What approximate percent way through the video should I open the video such that the question/prompt: \n\n  ~{usermsg}~ \n\n answered/talked about in that point in the video .\n Just give me a single integer without the percent sign in the output/response no explanation or extra text needed."}
     ],
-    response_format={"type": "json_object"},
     )
+    print("openai")
     print(response)
-    val = int(eval(response.choices[0].message.content)["answer"])
+    
+    val = int(response.choices[0].message.content)
+    print(val)
     return val/100
 
 
@@ -299,7 +301,7 @@ def action(url, msg):
     yt = YouTube(vidurl)  
     video_length = yt.length
     # print(video_length)
-    percentPos = find_question_position_basic(transcripts[transcriptSelected], usermsg)
+    percentPos = find_question_position_basic(transcripts[transcriptSelected], usermsg, video_length)
     time = int(video_length * percentPos)
     # print(time)
     finalOpenTime(time, vidurl)
@@ -352,7 +354,7 @@ def main():
             .made-by a {
                 text-decoration: none;  /* Remove blue hyperlink styling */
                 color: #777;  /* Set the color to a desired value */
-                margin-right: 10px;  /* Add space between the names */
+                margin-left: 10px;  /* Add space between the names */
             }
             </style>
             """
