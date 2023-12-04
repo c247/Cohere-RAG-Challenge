@@ -339,7 +339,7 @@ def main():
             .made-by {
                 position: fixed;
                 bottom: 10px;
-                right: 10px;
+                leftt: 10px;
                 font-size: 18px;
                 color: #777;
                 display: flex;
