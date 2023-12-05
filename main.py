@@ -320,7 +320,7 @@ def main():
         global usermsg
            # Create the expander for "How to"
         with st.expander("?"):
-            st.subheader("GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search ")
+            st.markdown("<h3 style='color: #0066cc;'>GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search</h3>", unsafe_allow_html=True)
             st.write("1. Enter the YouTube playlist URL of lecture content")
             st.write("2. Enter what you want to learn")
             st.write("3. Click the 'Submit' button")
