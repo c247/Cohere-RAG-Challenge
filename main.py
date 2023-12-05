@@ -338,22 +338,6 @@ def main():
             ],
         )
 
-        # Button to trigger the action
-        if st.button("Submit"):
-            with st.spinner("Searching..."):
-                global finalURL
-                finalURL = ""
-                
-                action(url, usermsg)
-                
-                if finalURL:
-                    st.success(f"Final URL: {finalURL}")
-                    st.success(f"Query Answer: {response.choices[0].message.content}")
-
-     
-
-        footer_container = st.container()
-
         hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -388,6 +372,23 @@ def main():
                     '<a href="https://github.com/katarinamak">Katarina </a> '
                     '<a href="https://github.com/mary1afshar">Maryam</a>'
                     '</div>', unsafe_allow_html=True)
+        # Button to trigger the action
+        if st.button("Submit"):
+            with st.spinner("Searching..."):
+                global finalURL
+                finalURL = ""
+                
+                action(url, usermsg)
+                
+                if finalURL:
+                    st.success(f"Final URL: {finalURL}")
+                    st.success(f"Query Answer: {response.choices[0].message.content}")
+
+     
+
+        footer_container = st.container()
+
+        
 # Run the Streamlit app
 if __name__ == "__main__":
     main()
