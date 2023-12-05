@@ -315,7 +315,7 @@ def main():
 
     if user_authenticated:
         st.title("GoHere")
-        st.subheader("Youtube Playlist2 AI Search")
+        st.subheader("Youtube Playlist AI Assistant")
         hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
