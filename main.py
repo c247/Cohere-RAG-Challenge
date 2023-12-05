@@ -3,7 +3,7 @@ import re
 from pytube import Playlist
 from youtube_transcript_api import YouTubeTranscriptApi
 import cohere
-
+import concurrent.futures
 from pytube import YouTube
 import json
 import webbrowser
@@ -36,35 +36,36 @@ def storeURLS(url):
         urls.append(url)
 
 def Transcript(url):
+    pass
     # Retrieve URLs of videos from playlist
-    playlist = Playlist(url)
-    # print('Number Of Videos In playlist: %s' % len(playlist.video_urls))
-
-    # print(urls)
+    # playlist = Playlist(url)
+    
 
 
-    pattern = r'(?<=v=)[\w-]+'
+    # pattern = r'(?<=v=)[\w-]+'
 
-    video_idx = {}
-    uid = 0
+    # video_idx = {}
+    # uid = 0
 
 
     
-    for youtube_url in urls:
-        match = re.search(pattern, youtube_url)
+    # for youtube_url in urls:
+    #     match = re.search(pattern, youtube_url)
 
-        if match:
-            video_id = match.group()
-        else:
-            print("Video ID not found.")
+    #     if match:
+    #         video_id = match.group()
+    #     else:
+    #         print("Video ID not found.")
 
 
-        # using the srt variable with the list of dictionaries
-        # obtained by the .get_transcript() function
-        srt = YouTubeTranscriptApi.get_transcript(video_id)
+    #     # using the srt variable with the list of dictionaries
+    #     # obtained by the .get_transcript() function
+    #     srt = YouTubeTranscriptApi.get_transcript(video_id)
 
-        transcript = '\n'.join(i["text"] for i in srt)
-        transcripts.append(transcript)
+    #     transcript = '\n'.join(i["text"] for i in srt)
+    #     transcripts.append(transcript)
+
+
 
 def YoutubeParse(url):
     # Retrieve URLs of videos from playlist
@@ -89,14 +90,12 @@ def YoutubeParse(url):
         else:
             print("Video ID not found.")
 
-        # retrieve the available transcripts
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
-
         # using the srt variable with the list of dictionaries
         # obtained by the .get_transcript() function
         srt = YouTubeTranscriptApi.get_transcript(video_id)
 
         transcript = '\n'.join(i["text"] for i in srt)
+        transcripts.append(transcript)
         # print(transcript)
         response = co.summarize(
         text=transcript,
@@ -319,6 +318,14 @@ def main():
         st.header("Youtube Playlist AI Assistant")
 
         global usermsg
+           # Create the expander for "How to"
+        with st.expander("?"):
+            st.subheader("GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search ")
+            st.write("1. Enter the YouTube playlist URL of lecture content")
+            st.write("2. Enter what you want to learn")
+            st.write("3. Click the 'Submit' button")
+            st.write("4. Wait...for a while")
+            st.write("5. GoHere will locate the specific video and timestamp where the content is covered and also provide its best explanation")
         url = st.text_input("Enter YouTube playlist URL:")
         usermsg = st.text_input("What do you want to learn?")
         client = OpenAI(api_key=st.secrets["openaikey"],)
@@ -341,14 +348,7 @@ def main():
                 st.success(f"Final URL: {finalURL}")
                 st.success(f"Query Answer: {response.choices[0].message.content}")
 
-        # Create the expander for "How to"
-        with st.expander("?"):
-            st.subheader("GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search ")
-            st.write("1. Enter the YouTube playlist URL of lecture content")
-            st.write("2. Enter what you want to learn")
-            st.write("3. Click the 'Submit' button")
-            st.write("4. Wait...for a while")
-            st.write("5. GoHere will locate the specific video and timestamp where the content is covered and also provide its best explanation")
+     
 
         footer_container = st.container()
 
