@@ -12,7 +12,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
-from streamlit_lottie import st_lottie
+
 
 
 
@@ -39,6 +39,7 @@ def storeURLS(url):
 
 def YoutubeParse(url):
     # Retrieve URLs of videos from playlist
+
     pattern = r'(?<=v=)[\w-]+'
 
     video_idx = {}
@@ -245,9 +246,8 @@ def main():
 
         
         # Button to trigger the action
-        if st.button("Submitlot"):
-            with st.echo():
-                st_lottie("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
+        if st.button("Submit"):
+            with st.spinner("Searching..."):
                 global finalURL
                 finalURL = ""
                 
