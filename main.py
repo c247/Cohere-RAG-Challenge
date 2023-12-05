@@ -315,7 +315,7 @@ def main():
 
     if user_authenticated:
         st.title("GoHere")
-        st.header("Youtube Playlist AI Search")
+        st.header("Youtube Playlist1 AI Search")
 
         global usermsg
            # Create the expander for "How to"
