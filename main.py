@@ -315,29 +315,7 @@ def main():
 
     if user_authenticated:
         st.title("GoHere")
-        st.header("Youtube Playlist1 AI Search")
-
-        global usermsg
-           # Create the expander for "How to"
-        with st.expander("?"):
-            st.markdown("<h4 style='color: #0066cc; '>GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search</h3>", unsafe_allow_html=True)
-            st.write("1. Enter the YouTube playlist URL of lecture content")
-            st.write("2. Enter what you want to learn")
-            st.write("3. Click the 'Submit' button")
-            st.write("4. Wait...for a while")
-            st.write("5. GoHere will locate the specific video and timestamp where the content is covered and also provide its best explanation")
-        url = st.text_input("Enter YouTube playlist URL:")
-        usermsg = st.text_input("What do you want to learn?")
-        client = OpenAI(api_key=st.secrets["openaikey"],)
-        # client = OpenAI(api_key=os.getenv("API_KEY"),)
-        response = client.chat.completions.create(
-            model="gpt-4-1106-preview",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": f"{usermsg}"}
-            ],
-        )
-
+        st.subheader("Youtube Playlist2 AI Search")
         hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -372,6 +350,29 @@ def main():
                     '<a href="https://github.com/katarinamak">Katarina </a> '
                     '<a href="https://github.com/mary1afshar">Maryam</a>'
                     '</div>', unsafe_allow_html=True)
+
+        global usermsg
+           # Create the expander for "How to"
+        with st.expander("?"):
+            st.markdown("<h4 style='color: #0066cc; '>GoHere uses Cohere's RAG (Retrieval Augmented Generation) capabilities to assist you with your study search</h3>", unsafe_allow_html=True)
+            st.write("1. Enter the YouTube playlist URL of lecture content")
+            st.write("2. Enter what you want to learn")
+            st.write("3. Click the 'Submit' button")
+            st.write("4. Wait...for a while")
+            st.write("5. GoHere will locate the specific video and timestamp where the content is covered and also provide its best explanation")
+        url = st.text_input("Enter YouTube playlist URL:")
+        usermsg = st.text_input("What do you want to learn?")
+        client = OpenAI(api_key=st.secrets["openaikey"],)
+        # client = OpenAI(api_key=os.getenv("API_KEY"),)
+        response = client.chat.completions.create(
+            model="gpt-4-1106-preview",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": f"{usermsg}"}
+            ],
+        )
+
+        
         # Button to trigger the action
         if st.button("Submit"):
             with st.spinner("Searching..."):
