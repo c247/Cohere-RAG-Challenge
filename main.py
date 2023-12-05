@@ -14,8 +14,6 @@ import os
 from openai import OpenAI
 
 
-
-
 load_dotenv()
 co = cohere.Client(st.secrets["coherekey"])
 # co = cohere.Client(os.getenv("COHERE_KEY"))
