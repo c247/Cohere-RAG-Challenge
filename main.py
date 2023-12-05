@@ -245,7 +245,7 @@ def main():
 
         
         # Button to trigger the action
-        if st.button("Submit"):
+        if st.button("Submitlot"):
             with st.echo():
                 st_lottie("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
                 global finalURL
