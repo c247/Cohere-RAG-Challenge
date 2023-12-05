@@ -340,13 +340,15 @@ def main():
 
         # Button to trigger the action
         if st.button("Submit"):
-            global finalURL
-            finalURL = ""
-            
-            action(url, usermsg)
-            if finalURL:
-                st.success(f"Final URL: {finalURL}")
-                st.success(f"Query Answer: {response.choices[0].message.content}")
+            with st.spinner("Searching..."):
+                global finalURL
+                finalURL = ""
+                
+                action(url, usermsg)
+                
+                if finalURL:
+                    st.success(f"Final URL: {finalURL}")
+                    st.success(f"Query Answer: {response.choices[0].message.content}")
 
      
 
